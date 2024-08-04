@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<title>Insert-Ticket</title>
+</head>
+<body>
+	<header>
+		<!-- barra di navigazione --> 
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+			  <div class="container">
+			            <a class="navbar-brand" href="#">Prodotti</a>
+			            <button
+			                class="navbar-toggler"
+			                type="button"
+			                data-bs-toggle="collapse"
+			                data-bs-target="#navbarSupportedContent"
+			                aria-controls="navbarSupportedContent"
+			                aria-expanded="false"
+			                aria-label="Toggle navigation" >
+			             <span class="navbar-toggler-icon"></span>
+			            </button>
+			            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+			                    <li class="nav-item">
+			                        <a class="nav-link active" aria-current="page" href="#">Servizi</a>
+			                    </li>
+			                    <li class="nav-item">
+			                        <a class="nav-link active" href="#">Contatti</a>
+			                    </li>
+			                    <li class="nav-item">
+			                        <a class="nav-link active" aria-current="page" href="#">Login</a>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			    </nav>
+			</header>
+	
+	<div class="text-center mt-5 mb-5">
+		<h1>Aggiorna il ticket</h1>
+	</div>
+
+	<div class="container">
+		<form class="mx-auto w-50" id="ticketForm" th:object="${ticketForm}" th:action="@{/update-ticket/{id}(id=${ticketForm.getId()})}" method="post">
+		  <input type="hidden" th:field="*{stato}" id="stato">
+		  <input type="hidden" th:field="*{note}" id="note">
+			<div class="form-group mb-2" >
+			<label for="titolo">Titolo del ticket</label>
+			<input type="text" class="form-control" id="name" name="name" th:field="*{name}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('name')}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
+							
+			<div class="form-group mb-2" >
+			<label for="Data" name="data"> Data</label>
+			<input type="date" class="form-control" id="data" th:field="*{data}" th:errorClass="is-invalid">
+			    <div th:if="${#fields.hasErrors('data')}" class="invalid-feedback">
+				   <ul>
+	   				  <li th:each="err : ${#fields.errors('data')}" 
+	   					th:text="${err}">
+	   				  </li>
+				   </ul>
+			    </div>
+			</div>
+			
+			<div class="form-group mb-2" >
+			<label for="Testo" name="testo"> Testo del ticket </label>
+			<textarea class="form-control" id="testo" name="testo" th:field="*{testo}" th:errorClass="is-invalid"></textarea>
+				<div th:if="${#fields.hasErrors('testo')}" class="invalid-feedback">
+					<ul>
+				   		<li th:each="err : ${#fields.errors('testo')}" 
+				   		th:text="${err}">
+				   		</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="form-group mb-2" >
+				<label for="categoria" name="categoria"> Categoria del ticket </label>
+				<select class="form-select" id="categoria" th:field="*{categoria}" th:errorClass="is-invalid" >
+					<option th:each="categoria : ${categorieForm}" th:value="${categoria.id}"
+					      th:text="${categoria.tipologia}"></option>
+				</select>	
+			</div>
+			<div th:if="${#fields.hasErrors('categoria')}" class="invalid-feedback">
+			     <ul>
+			        <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}"></li>
+			     </ul>
+			</div>
+
+			<div class="form-group mb-2" >
+				<label for="user" name="user"> Operatore </label>
+					<select class="form-select" id="stato" th:field="*{user}" th:errorClass="is-invalid" >
+					    <option th:each="user : ${usersForm}" th:value="${user.id}"
+						  th:text="${user.username}"></option>
+					</select>	
+			</div>
+			<div th:if="${#fields.hasErrors('categoria')}" class="invalid-feedback">
+				<ul>
+				   <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}"></li>
+				</ul>
+		    </div>		
+			<button type="submit" class="btn btn-primary"> Modifica </button>		
+		</form>
+	</div>
+	
+	<div class="text-center mt-5 mb-5">
+		<a class="btn btn-primary" th:href="@{/lista-admin}"> Torna alla lista dei ticket </a>
+	</div>
+	<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
