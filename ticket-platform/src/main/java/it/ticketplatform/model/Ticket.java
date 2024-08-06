@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List; 
@@ -23,11 +24,13 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull(message = "Il nome non può essere null")
+	@NotNull(message = "Il titolo non può essere null")
+	@NotBlank(message = "Il titolo non può essere blank ")
 	@Column(name = "Titolo", nullable = false)
 	private String name;
 
 	@NotNull(message = "Il testo del ticket non può essere null")
+	@NotBlank(message = "Il testo del ticket non può essere blank ")
 	@Column(name = "Testo", nullable = false)
 	@Size(min = 1, max =500 , message="massimo 500 caratteri")
 	private String testo;
@@ -37,7 +40,7 @@ public class Ticket {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	
-	@NotNull(message = "non può essere vuoto")
+	@NotNull(message = "Lo stato non può essere vuoto")
 	@Column(name = "Stato", nullable = false)
 	private String stato;
 	

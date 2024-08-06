@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="User")
@@ -23,10 +24,12 @@ public class User {
 	
 	@Column(name="username", nullable=false)
 	@NotNull(message = "Lo username non può essere null")
+	@NotBlank(message="Lo username non può essere blank")
 	private String username;
 	
 	@Column(name="password", nullable=false)
 	@NotNull(message = "La password non può essere null")
+	@NotBlank(message="La password non può essere blank")
 	private String password;
 	
 	@Column(name="email", nullable=true)
@@ -82,7 +85,8 @@ public class User {
 		return disponibile;
 	}
 
-	public void setBusy(boolean busy) {
+
+	public void setDisponibile(boolean disponibile) {
 		this.disponibile = disponibile;
 	}
 	

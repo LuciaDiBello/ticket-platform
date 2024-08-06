@@ -40,15 +40,24 @@ public class TicketController {
 		return "lista-admin";
 	}
 	 
+	 
 	 @GetMapping("/ticket-search")
 	 public String ticketByName(Model model, @RequestParam(name = "name", required = false) String name) {
-	
-		    List<Ticket> listaTicket = repositoryTicket.findByName(name);
-			model.addAttribute("list", listaTicket);
-			return "redirect:/show/" + listaTicket.get(0).getId();
-	}
-	 
-	 
+         
+		    if (name == null || name.isBlank()) {
+		          return "redirect:/lista-admin";
+		       }
+		    else { 
+		    	   List<Ticket> listaTicket = repositoryTicket.findByName(name);
+		           if (listaTicket.isEmpty()) 
+		    			         return "redirect:/lista-admin";     
+		           else  {  
+		        	   		model.addAttribute("listaTicket", listaTicket);
+			    	  		return "redirect:/show/" + listaTicket.get(0).getId(); 
+			                }   
+		          } 
+	  }	
+	 	 
 	@GetMapping("/show/{id}")
 	public String dettaglioTicket(@PathVariable("id") int ticketId, Model model) {
 		

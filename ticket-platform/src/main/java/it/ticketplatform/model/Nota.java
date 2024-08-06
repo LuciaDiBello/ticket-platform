@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate; 
 
@@ -21,6 +22,7 @@ public class Nota {
 	private int id;
 
 	@NotNull(message = "Il testo della nota non può essere null")
+	@NotBlank(message="Il testo della nota non può essere blank")
 	@Column(name = "Testo", nullable = false)
 	@Size(min = 1, max =500 , message="massimo 500 caratteri")
 	private String testo;

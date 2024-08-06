@@ -23,7 +23,7 @@ public class Categoria {
 
 	@Column(name="tipologia", nullable=false)
 	@NotNull(message="tipologia cannot be null")
-	@NotBlank(message="tipologia cannot be null")
+	@NotBlank(message="tipologia cannot be blank")
 	private String tipologia;
 	
 	@OneToMany(mappedBy = "categoria")
