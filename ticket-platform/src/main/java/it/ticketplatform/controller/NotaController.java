@@ -28,7 +28,7 @@ public class NotaController {
 	public String insertNota(@PathVariable("id") Integer id, Model model) {
 			
 		Ticket ticket = repositTicket.findById(id).get();
-		User user = ticket.getUser();  //Individuare lo user corrente, aggiungere l'autenticazione
+		User user = ticket.getUser(); 
 		Nota notaForm = new Nota();
 		notaForm.setTicket(ticket);
 		notaForm.setUser(user);

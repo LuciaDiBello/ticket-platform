@@ -97,17 +97,17 @@
    <h1>La ricerca non ha prodotto risultati</h1>
    </div>
  </div>
-  
+ 
   <div class="container mt-5">
-	<div class="text-center mb-5">
-	  <form class="mx-auto w-50" role="search" method="get" th:action="@{/ticket-search}">
-	    <label for="ticket-search">Ricerca per titolo</label>
-    	   <input type="name" placeholder="Titolo" aria-label="Search" th:name="name">
-    	     <button class="btn btn-primary ms-2" type="submit">Search</button>
-      </form>
-    </div>  
-  </div>
-
+  	<div class="text-center mb-5">
+  	  <form class="mx-auto w-50" role="search" method:"get" th:action="@{/ticket-search}">
+  	    <label for="ticket-search">Ricerca per titolo</label>
+      	   <input type="text" name="name" placeholder="Titolo" aria-label="Search">
+      	     <button class="btn btn-primary ms-2" type="submit">Search</button>
+        </form>
+      </div>  
+    </div>
+  
 <div class="text-center mt-5 mb-5">
     <a th:fragment="button(link)" class="btn btn-success" th:href="@{/insert-ticket}"> Inserisci un nuovo ticket </a>
 </div>

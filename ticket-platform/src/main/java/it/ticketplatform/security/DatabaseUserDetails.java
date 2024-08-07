@@ -25,7 +25,7 @@ public class DatabaseUserDetails implements UserDetails {
 		this.password = user.getPassword();
 		this.authorities = new HashSet<>();
 		for(Role ruolo : user.getRoles()) {
-			this.authorities.add(new SimpleGrantedAuthority(ruolo.getRolename()));
+			this.authorities.add(new SimpleGrantedAuthority(ruolo.getName()));
 		}
 	}
 	

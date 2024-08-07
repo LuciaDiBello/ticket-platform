@@ -11,21 +11,21 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-   @Bean
-  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-   http.cors()
-      .and()
-      .authorizeHttpRequests()
-       //.requestMatchers("/lista-admin", "/show/**", "/insert-nota/**", "/ticket-search", "/update-ticket/**", "/insert-ticket", "/delete/**").hasAuthority("ADMIN")
-       //.requestMatchers("/show/**", "/insert-nota/**", "/update-state/**", "/update-user/**", "/user-page/**").hasAuthority("USER")
-       .requestMatchers("/**").permitAll()   
-       .and().formLogin()
-       .defaultSuccessUrl("/lista-admin", true)
-       .and().logout()
-       .and().exceptionHandling()
-       .and().csrf().disable();
-     return http.build();
-    }
+	 @Bean
+	  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	   http.cors()
+	      .and()
+	      .authorizeHttpRequests()
+	      // .requestMatchers("/index", "/lista-admin", "/show/**", "/insert-nota/**", "/ticket-search", "/update-ticket/**", "/insert-ticket", "/delete/**", "/user-page/1", "/update-user/1" ).hasAuthority("ADMIN")
+	       .requestMatchers("/index","/show/**", "/insert-nota/**", "/update-state/**", "/update-user/**", "/user-page/**").hasAuthority("USER")
+	       .requestMatchers("/**").permitAll()   
+	       .and().formLogin()
+	       .defaultSuccessUrl("/index", true)
+	       .and().logout()
+	       .and().exceptionHandling()
+	       .and().csrf().disable();
+	     return http.build();
+	    }
 
     @Bean
     DatabaseUserDetailsService userDetailsService() {

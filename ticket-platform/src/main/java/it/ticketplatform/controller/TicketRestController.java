@@ -41,12 +41,14 @@ public class TicketRestController {
 	
 	  @GetMapping("/lista-ticket")
 	    public ResponseEntity<Payload<List<Ticket>>> getAll() {
+		  
 	        List<Ticket> ticketList = ticketService.findAll();
 	        return ResponseEntity.ok(new Payload<List<Ticket>>(ticketList, null, HttpStatus.OK));
 	    }
 	
 	  @GetMapping("/ticket-categoria/{categoriaTipologia}")
 	    public ResponseEntity<Payload<List<Ticket>>> getByCategoriaTipologia(@PathVariable("categoriaTipologia") String categoriaTipologia) {
+		  
 	        List<Ticket> tickets = ticketService.findByCategoriaTipologia(categoriaTipologia);
 	        if (tickets.isEmpty()) {
 	            return new ResponseEntity<>(
@@ -59,6 +61,7 @@ public class TicketRestController {
 	  
 	    @GetMapping("/ticket-stato/{stato}")
 	    public ResponseEntity<Payload<List<Ticket>>> getByStato(@PathVariable("stato") String stato) {
+	    	
 	        List<Ticket> tickets = ticketService.findByStato(stato);
 	        if (tickets.isEmpty()) {
 	            return new ResponseEntity<>(
